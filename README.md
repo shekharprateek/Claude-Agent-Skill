@@ -11,6 +11,8 @@ This sample demonstrates how to deploy an AI agent using the **Claude SDK with A
 - Configure IAM permissions for agent execution
 - Use `--local-build` to avoid Lambda layer injection issues
 
+## Problem
+Customers needs Claude Agent SDK's skill system on AgentCore Runtime, but a mismatch between Claude SDK's filesystem-based approach (expecting .claude/skills/ directories with complex nested structures, Python scripts, and interdependent skill.md files) and AgentCore's constraints that limit filesystem access and container size. With an ever-growing skill repository (10-30 skills expanding to 100+) that needs to be shared across multiple agent runtimes, the standard approach of bundling all skills into each container becomes unmanageable and prevents hot updates. Our S3-based solution provides centralized skill storage, dynamic runtime loading, and hot-swappable capabilities essentially solving enterprise-scale skill management challenges that the native Claude Agent SDK can't address on constrained runtime environments.
 ## Architecture
 
 ```
